@@ -138,12 +138,12 @@ RainyDay.prototype.animateDrops = function() {
 RainyDay.prototype.setRequestAnimFrame = function() {
 	var fps = this.options.fps;
 	window.requestAnimFrame = (function() {
-		return window.requestAnimationFrame ||
+		return (window.requestAnimationFrame ||
 			window.webkitRequestAnimationFrame ||
 			window.mozRequestAnimationFrame ||
 			function(callback) {
 				window.setTimeout(callback, 1000 / fps);
-			};
+			};);
 	})();
 };
 
