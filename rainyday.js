@@ -677,24 +677,30 @@ RainyDay.prototype.stackBlurCanvasRGB = function(width, height, radius) {
 		pb,
 		rbs;
 	var radiusPlus1 = radius + 1;
+	//sumFactor = 11 * (11 + 1) / 2 = 66;
 	var sumFactor = radiusPlus1 * (radiusPlus1 + 1) / 2;
 
 	var stackStart = new BlurStack();
 	var stackEnd = new BlurStack();
 	var stack = stackStart;
 	for (i = 1; i < 2 * radius + 1; i++) {
+		//stack.next = new BlurStack();
+		//stack = stack.next;
 		stack = stack.next = new BlurStack();
 		if (i === radiusPlus1) {
 			stackEnd = stack;
 		}
 	}
+	//stack.next point to 21 stack
 	stack.next = stackStart;
 	var stackIn = null;
 	var stackOut = null;
 
 	yw = yi = 0;
 
+	//mulSum = mulTable[10] = 271;
 	var mulSum = mulTable[radius];
+	// shgSum = 15;
 	var shgSum;
 	for (var ssi = 0; ssi < shgTable.length; ++ssi) {
 		if (radius <= shgTable[ssi][0]) {
